@@ -6,6 +6,8 @@
         <a href="{{ route('admin.patients.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded">Add Patient</a>
     </div>
 
+
+
     @if(session('success'))
         <div class="mb-4 text-green-600">{{ session('success') }}</div>
     @endif
@@ -39,7 +41,10 @@
         </tbody>
     </table>
 
+
+    
     <div class="mt-4">
         {{ $patients->links() }}
     </div>
+
 @endsection

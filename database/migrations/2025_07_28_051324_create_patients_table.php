@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->date('dob')->nullable(); // Date of birth
+            $table->string('gender')->nullable();
             $table->text('address')->nullable();
             $table->timestamps();
         });
