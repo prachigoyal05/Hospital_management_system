@@ -30,15 +30,16 @@ class PatientController extends Controller
      */
        public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'nullable|email',
-            'phone' => 'nullable|string|max:20',
-            'dob' => 'nullable|date',
-            'address' => 'nullable|string',
-        ]);
+         $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:patients,email',
+        'phone' => 'required|string|max:20',
+        'dob' => 'required|date',
+        // 'gender' => 'required|in:male,female,other',
+        'address' => 'nullable|string',
+    ]);
 
-        Patient::create($request->all());
+    Patient::create($validated);
 
         return redirect()->route('admin.patients.index')->with('success', 'Patient added successfully.');
     }
@@ -60,6 +61,7 @@ class PatientController extends Controller
             'email' => 'nullable|email',
             'phone' => 'nullable|string|max:20',
             'dob' => 'nullable|date',
+            //  'gender' => 'nullable|string',
             'address' => 'nullable|string',
         ]);
 
