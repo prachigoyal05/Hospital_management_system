@@ -4,62 +4,54 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\LabTest;
 
 class LabTestController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
-    {
-        //
-    }
+{
+    $tests = LabTest::paginate(10);
+    return view('admin.lab_tests.index', compact('tests'));
+}
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+public function create()
+{
+    return view('admin.lab_tests.create');
+}
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required',
+        'price' => 'nullable|numeric',
+    ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+    LabTest::create($request->all());
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+    return redirect()->route('admin.lab-tests.index')->with('success', 'Test added.');
+}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+public function edit(LabTest $labTest)
+{
+    return view('admin.lab_tests.edit', compact('labTest'));
+}
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+public function update(Request $request, LabTest $labTest)
+{
+    $request->validate([
+        'name' => 'required',
+        'price' => 'nullable|numeric',
+    ]);
+
+    $labTest->update($request->all());
+
+    return redirect()->route('admin.lab-tests.index')->with('success', 'Test updated.');
+}
+
+public function destroy(LabTest $labTest)
+{
+    $labTest->delete();
+    return redirect()->route('admin.lab-tests.index')->with('success', 'Test deleted.');
+}
+
 }

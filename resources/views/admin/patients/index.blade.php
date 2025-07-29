@@ -3,7 +3,7 @@
 @section('content')
     <div class="mb-6">
         <h1 class="text-2xl font-semibold mb-4">Patients</h1>
-        <a href="{{ route('admin.patients.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded">Add Patient</a>
+        <a href="{{ route('admin.patients.create') }}" class="px-4 py-2 bg-blue-500 text-blue rounded">Add Patient</a>
     </div>
 
 
@@ -11,22 +11,27 @@
     @if(session('success'))
         <div class="mb-4 text-green-600">{{ session('success') }}</div>
     @endif
+       <table class="w-full table-fixed border bg-white rounded">
+    <thead>
+        <tr class="bg-gray-200">
+            <th class="p-2 text-left w-1/6">Name</th>
+            <th class="p-2 text-left w-1/6">Email</th>
+            <th class="p-2 text-left w-1/6">Phone</th>
+            <th class="p-2 text-left w-1/6">Date of birth</th>
+            <th class="p-2 text-left w-1/6">Address</th>
+            <th class="p-2 text-left w-1/6">Actions</th>
+        </tr>
+    </thead>
 
-    <table class="w-full table-auto border bg-white rounded">
-        <thead>
-            <tr class="bg-gray-200">
-                <th class="p-2 text-left">Name</th>
-                <th class="p-2 text-left">Email</th>
-                <th class="p-2 text-left">Phone</th>
-                <th class="p-2 text-left">Actions</th>
-            </tr>
-        </thead>
+    
         <tbody>
             @forelse($patients as $patient)
                 <tr>
                     <td class="p-2">{{ $patient->name }}</td>
                     <td class="p-2">{{ $patient->email }}</td>
                     <td class="p-2">{{ $patient->phone }}</td>
+                    <td class="p-2">{{ $patient->dob}}</td>
+                    <td class="p-2">{{ $patient->address}}</td>
                     <td class="p-2">
                         <a href="{{ route('admin.patients.edit', $patient) }}" class="text-blue-500">Edit</a> |
                         <form action="{{ route('admin.patients.destroy', $patient) }}" method="POST" class="inline">
@@ -36,7 +41,7 @@
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="4" class="p-4 text-center">No patients found.</td></tr>
+                <tr><td colspan="6"class="p-4 text-center">No patients found.</td></tr>
             @endforelse
         </tbody>
     </table>
@@ -44,7 +49,21 @@
 
     
     <div class="mt-4">
-        {{ $patients->links() }}
+       @if ($patients->hasPages())
+    <div class="flex justify-between items-center mt-4">
+        @if ($patients->onFirstPage())
+            <span class="px-4 py-2 border rounded text-gray-400">&laquo; Previous</span>
+        @else
+            <a href="{{ $patients->previousPageUrl() }}" class="px-4 py-2 border rounded text-blue-600 hover:bg-blue-50">&laquo; Previous</a>
+        @endif
+        
+        @if ($patients->hasMorePages())
+            <a href="{{ $patients->nextPageUrl() }}" class="px-4 py-2 border rounded text-blue-600 hover:bg-blue-50">Next &raquo;</a>
+        @else
+            <span class="px-4 py-2 border rounded text-gray-400">Next &raquo;</span>
+        @endif
+    </div>
+@endif
     </div>
 
 @endsection

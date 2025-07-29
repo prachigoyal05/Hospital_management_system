@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
 {
-   protected $fillable = ['name', 'email', 'phone', 'dob', 'gender', 'address'];
+   protected $fillable = ['name', 'email', 'phone', 'dob', 'address'];
+
+   public function reports()
+{
+    return $this->hasMany(Report::class);
+}
+
 
 }

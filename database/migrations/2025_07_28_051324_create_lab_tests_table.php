@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('lab_tests', function (Blueprint $table) {
             $table->id();
-            $table->string('test_name');
-            $table->decimal('price', 8, 2);
+           $table->string('name');
+            $table->text('description')->nullable();
+            $table->string('category')->nullable();
+            $table->decimal('price', 8, 2)->nullable();
+            $table->decimal('turnaround_time', 8, 2)->nullable();
+            $table->text('test_requirements')->nullable();
             $table->timestamps();
         });
     }

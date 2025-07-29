@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('patient_id')->constrained()->onDelete('cascade');
-            $table->foreignId('lab_test_id')->constrained()->onDelete('cascade');
-            $table->enum('status', ['Pending', 'Completed'])->default('Pending');
-            $table->text('result')->nullable();
+            $table->unsignedBigInteger('patient_id');
+            $table->unsignedBigInteger('lab_test_id');
+            $table->string('file_path')->nullable(); // For uploaded PDF/image
+            $table->text('result')->nullable(); // For inline results
+            $table->date('report_date');
             $table->timestamps();
+
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
+            $table->foreign('lab_test_id')->references('id')->on('lab_tests')->onDelete('cascade');
         });
     }
 

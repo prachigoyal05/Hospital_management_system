@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container mt-4">
-    <h2 class="mb-4">Add New Patient</h2>
+<div class="max-w-xl mx-auto mt-8 bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-semibold mb-6 text-center">Add New Patient</h2>
 
     @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>There were some problems with your input.</strong><br><br>
-            <ul>
+        <div class="bg-red-100 text-red-700 p-4 rounded mb-4">
+            <strong>There were some problems with your input:</strong>
+            <ul class="mt-2 list-disc list-inside">
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
@@ -15,46 +15,38 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.patients.store') }}" method="POST">
+    <form action="{{ route('admin.patients.store') }}" method="POST" class="space-y-4">
         @csrf
 
-        <div class="mb-3">
-            <label class="form-label">Full Name</label>
-            <input type="text" name="name" class="form-control" required>
+        <div>
+            <label class="block mb-1 font-medium">Full Name</label>
+            <input type="text" name="name" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
         </div>
 
-        <div class="mb-3">
-            <label class="form-label">Email (optional)</label>
-            <input type="email" name="email" class="form-control">
+        <div>
+            <label class="block mb-1 font-medium">Email (optional)</label>
+            <input type="email" name="email" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
 
-        <div class="mb-3">
-            <label class="form-label">Phone Number</label>
-            <input type="text" name="phone" class="form-control">
+        <div>
+            <label class="block mb-1 font-medium">Phone Number</label>
+            <input type="text" name="phone" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
 
-        <div class="mb-3">
-            <label class="form-label">Date of Birth</label>
-            <input type="date" name="dob" class="form-control">
+        <div>
+            <label class="block mb-1 font-medium">Date of Birth</label>
+            <input type="date" name="dob" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
 
-        <!-- <div class="mb-3">
-            <label class="form-label">Gender</label>
-            <select name="gender" class="form-select">
-                <option value="">Select</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-            </select>
-        </div> -->
-
-        <div class="mb-3">
-            <label class="form-label">Address</label>
-            <textarea name="address" class="form-control" rows="3"></textarea>
+        <div>
+            <label class="block mb-1 font-medium">Address</label>
+            <textarea name="address" rows="3" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-success">Add Patient</button>
-        <a href="{{ route('admin.patients.index') }}" class="btn btn-secondary">Cancel</a>
+        <div class="flex items-center justify-between mt-6">
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Add Patient</button>
+            <a href="{{ route('admin.patients.index') }}" class="text-gray-600 hover:text-gray-800">Cancel</a>
+        </div>
     </form>
 </div>
 @endsection
