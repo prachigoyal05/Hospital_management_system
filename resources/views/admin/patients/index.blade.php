@@ -3,19 +3,20 @@
 @section('content')
     <div class="mb-6">
         <h1 class="text-2xl font-semibold mb-4">Patients</h1>
-        <a href="{{ route('admin.patients.create') }}" class="px-4 py-2 bg-blue-500 text-blue rounded">Add Patient</a>
+        <a href="{{ route('admin.patients.create') }}" class="px-4 py-2 bg-green-500 text-blue rounded">Add Patient</a>
     </div>
 
 
 
     @if(session('success'))
-        <div class="mb-4 text-green-600">{{ session('success') }}</div>
+        <table class="w-full table-fixed border bg-white rounded break-words">
     @endif
        <table class="w-full table-fixed border bg-white rounded">
     <thead>
-        <tr class="bg-gray-200">
+        <tr class="bg-green-200">
             <th class="p-2 text-left w-1/6">Name</th>
-            <th class="p-2 text-left w-1/6">Email</th>
+            <th class="p-2 w-48">Email</th>
+
             <th class="p-2 text-left w-1/6">Phone</th>
             <th class="p-2 text-left w-1/6">Date of birth</th>
             <th class="p-2 text-left w-1/6">Address</th>
@@ -28,7 +29,10 @@
             @forelse($patients as $patient)
                 <tr>
                     <td class="p-2">{{ $patient->name }}</td>
-                    <td class="p-2">{{ $patient->email }}</td>
+                    <td class="p-2 whitespace-normal break-words break-all w-48">
+                        {{ $patient->email }}
+                    </td>
+
                     <td class="p-2">{{ $patient->phone }}</td>
                     <td class="p-2">{{ $patient->dob}}</td>
                     <td class="p-2">{{ $patient->address}}</td>
