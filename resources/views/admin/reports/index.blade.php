@@ -6,10 +6,10 @@
     <!-- Header with action buttons -->
     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
         <div class="mb-4 md:mb-0">
-            <h2 class="text-2xl font-semibold text-blue-600">Test Reports</h2>
-            <p class="text-sm text-blue-500">View and manage all laboratory test reports</p>
+            <h2 class="text-2xl font-semibold text-green-600">Test Reports</h2>
+            <p class="text-sm text-black-500">View and manage all laboratory test reports</p>
         </div>
-        <a href="{{ route('admin.reports.create') }}" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
+        <a href="{{ route('admin.reports.create') }}" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
             <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
             </svg>
@@ -18,19 +18,19 @@
     </div>
 
     <!-- Reports Table -->
-    <div class="bg-white rounded-lg shadow-sm border border-blue-100 overflow-hidden">
+    <div class="bg-white rounded-lg shadow-sm border border-green-100 overflow-hidden">
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-blue-200">
-                <thead class="bg-blue-50">
+                <thead class="bg-green-100">
                     <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">S.No.</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">Patient</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">Test</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">Date</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">Status</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">Result</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">File</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">Actions</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">#</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">Patient</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">Test</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">Date</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">Status</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">Result</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">File</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
               <tbody class="bg-white divide-y divide-blue-200">

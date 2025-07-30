@@ -14,3 +14,16 @@
 .input {
     @apply border border-blue-200 focus:border-blue-500 focus:ring-blue-500 rounded-md shadow-sm;
 }
+body {
+    background-color: #003d3d !important;
+}
+
+
+.navbar {
+    background-color: #004080;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}

@@ -17,7 +17,6 @@
     </div>
 
     <!-- Staff Table -->
-    <!-- Staff Table -->
     <div class="bg-white rounded-lg shadow-sm border border-blue-100 overflow-hidden">
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-blue-200">
@@ -32,7 +31,6 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-blue-200">
                     @forelse ($staff as $index => $member)
-                    dd
                     <tr class="hover:bg-blue-50">
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600">
                             {{ $index + 1 }}

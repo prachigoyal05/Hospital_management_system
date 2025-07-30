@@ -5,10 +5,10 @@
     <!-- Header with action buttons -->
     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
         <div class="mb-4 md:mb-0">
-            <h2 class="text-2xl font-semibold text-blue-600">Lab Tests</h2>
-            <p class="text-sm text-blue-500">Manage all laboratory tests and their details</p>
+            <h2 class="text-2xl font-semibold text-black-600">Lab Tests</h2>
+            <p class="text-sm text-black-500">Manage all laboratory tests and their details</p>
         </div>
-        <a href="{{ route('admin.lab-tests.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">
+        <a href="{{ route('admin.lab-tests.create') }}" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">
             <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
             </svg>
@@ -33,15 +33,15 @@
     @endif
 
     <!-- Search and Filter -->
-    <div class="bg-white rounded-lg shadow-sm border border-blue-100 p-4 mb-6">
+    <div class="bg-white rounded-lg shadow-sm border border-green-100 p-4 mb-6">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-                <label for="search" class="block text-sm font-medium text-blue-600 mb-1">Search</label>
+                <label for="search" class="block text-sm font-medium text-black-600 mb-1">Search</label>
                 <input type="text" id="search" placeholder="Search tests..." class="block w-full rounded-md border-blue-200 shadow-sm focus:border-blue-500 focus:ring-blue-500">
             </div>
             <div>
-                <label for="category" class="block text-sm font-medium text-blue-600 mb-1">Category</label>
-                <select id="category" class="block w-full rounded-md border-blue-200 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                <label for="category" class="block text-sm font-medium text-black-600 mb-1">Category</label>
+                <select id="category" class="block w-full rounded-md border-green shadow-sm focus:border-green-500 focus:ring-green-500">
                     <option value="">All Categories</option>
                     <option value="Hematology">Hematology</option>
                     <option value="Biochemistry">Biochemistry</option>
@@ -50,7 +50,7 @@
                 </select>
             </div>
             <div class="flex items-end">
-                <button class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                <button class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     Filter Results
                 </button>
             </div>
@@ -63,35 +63,35 @@
             <table class="min-w-full divide-y divide-blue-200">
                 <thead class="bg-blue-50">
                     <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">Test Name</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">Category</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">Price (₹)</th> 
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">Turnaround_time</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">Description</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">Test_requirements</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">Actions</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">Test Name</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">Category</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">Price (₹)</th> 
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">Turnaround_time</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">Description</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">Test_requirements</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-blue-200">
                     @forelse ($tests as $test)
                         <tr class="hover:bg-blue-50">
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-blue-900">{{ $test->name }}</div>
+                                <div class="text-sm font-medium text-black-900">{{ $test->name }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-blue-600">{{ $test->category ?? '—' }}</div>
+                                <div class="text-sm text-black-600">{{ $test->category ?? '—' }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-blue-600">{{ $test->price ? '₹'.number_format($test->price, 2) : 'N/A' }}</div>
+                                <div class="text-sm text-black-600">{{ $test->price ? '₹'.number_format($test->price, 2) : 'N/A' }}</div>
                             </td>
                              <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-blue-900">{{ $test->turnaround_time}}</div>
+                                <div class="text-sm font-medium text-black-900">{{ $test->turnaround_time}}</div>
                             </td>
                              <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-blue-900">{{ $test->description}}</div>
+                                <div class="text-sm font-medium text-black-900">{{ $test->description}}</div>
                             </td>
                              <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-blue-900">{{ $test->test_requirements}}</div>
+                                <div class="text-sm font-medium text-black-900">{{ $test->test_requirements}}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex space-x-2">
@@ -109,8 +109,8 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="px-6 py-4 text-center text-sm text-blue-500">
-                                No lab tests found. <a href="{{ route('admin.lab-tests.create') }}" class="text-blue-600 hover:text-blue-800">Create one now</a>
+                            <td colspan="4" class="px-6 py-4 text-center text-sm text-black-500">
+                                No lab tests found. <a href="{{ route('admin.lab-tests.create') }}" class="text-green-600 hover:text-blue-800">Create one now</a>
                             </td>
                         </tr>
                     @endforelse

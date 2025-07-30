@@ -5,11 +5,12 @@
 @section('description', '') -->
 
 @section('content')
+
 <div class="space-y-6">
     <!-- Welcome Header -->
     <div class="flex flex-col md:flex-row md:items-center md:justify-between">
         <div>
-            <h1 class="text-2xl font-bold text-gray-800">Welcome back, <span class="text-blue-600">Admin</span>!</h1>
+            <h1 class="text-2xl font-bold text-gray-800">Welcome back, <span class="text-red-500">Admin</span>!</h1>
             <p class="text-gray-500 mt-1">Here's what's happening in your hospital today</p>
         </div>
         <div class="mt-4 md:mt-0">
@@ -24,7 +25,7 @@
     <!-- Stats Cards -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Patients Card -->
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+        <div class="bg-green p-6 rounded-xl shadow-sm border border-blue-100 hover:green-300 transition-shadow">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm font-medium text-gray-500">Total Patients</p>
@@ -115,9 +116,9 @@
             
             <!-- More activity items... -->
         </div>
-        <div class="px-6 py-3 border-t border-gray-200 text-center">
+        <!-- <div class="px-6 py-3 border-t border-gray-200 text-center">
             <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-800">View all activity</a>
-        </div>
+        </div> -->
     </div>
 
     <!-- Quick Actions -->
