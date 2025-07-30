@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Admin\StaffController as AdminStaffController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,5 +37,13 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('reports', \App\Http\Controllers\Admin\ReportController::class);
 });
 
+Route::prefix('admin/staff')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/', [AdminStaffController::class, 'index'])->name('admin.staff.index');
+    Route::get('/create', [AdminStaffController::class, 'create'])->name('admin.staff.create');
+    Route::post('/store', [AdminStaffController::class, 'store'])->name('admin.staff.store');
+    Route::get('/{id}/edit', [AdminStaffController::class, 'edit'])->name('admin.staff.edit');
+    Route::put('/{id}', [AdminStaffController::class, 'update'])->name('admin.staff.update');
+    Route::delete('/{id}', [AdminStaffController::class, 'destroy'])->name('admin.staff.destroy');
+});
 
 require __DIR__.'/auth.php';

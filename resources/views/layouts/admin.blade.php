@@ -34,7 +34,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="block py-2 px-3 rounded hover:bg-blue-50 text-blue-600 hover:text-blue-700 transition">
+                        <a href="{{ route('admin.staff.index') }}" class="block py-2 px-3 rounded hover:bg-blue-50 text-blue-600 hover:text-blue-700 transition">
                             Staff
                         </a>
                     </li>

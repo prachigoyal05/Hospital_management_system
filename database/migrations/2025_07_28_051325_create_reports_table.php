@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('patient_id');
             $table->unsignedBigInteger('lab_test_id');
-            $table->string('file_path')->nullable(); // For uploaded PDF/image
-            $table->text('result')->nullable(); // For inline results
             $table->date('report_date');
+            $table->string('status')->default('pending')->comment('pending, completed, delivered');
+            $table->text('result')->nullable(); // For inline results
+            $table->string('file_path')->nullable(); // For uploaded PDF/image
+            
             $table->timestamps();
 
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
