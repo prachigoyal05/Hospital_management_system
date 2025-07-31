@@ -73,9 +73,7 @@
     <select name="role" id="role" class="block w-full rounded-md border-blue-200 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
         <option value="">Select Role</option>
         <option value="staff" {{ old('role', $staff->role ?? '') == 'staff' ? 'selected' : '' }}>Staff</option>
-        <option value="doctor" {{ old('role', $staff->role ?? '') == 'doctor' ? 'selected' : '' }}>Doctor</option>
-        <option value="nurse" {{ old('role', $staff->role ?? '') == 'nurse' ? 'selected' : '' }}>Nurse</option>
-        <option value="admin" {{ old('role', $staff->role ?? '') == 'admin' ? 'selected' : '' }}>Administrator</option>
+       
     </select>
 </div>
 

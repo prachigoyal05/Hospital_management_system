@@ -8,12 +8,20 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\StaffController as AdminStaffController;
 
 Route::get('/', function () {
+    if (auth()->check()) {
+        $role = auth()->user()->role;
+        if ($role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        } elseif ($role === 'staff') {
+            return redirect()->route('staff.dashboard');
+        }
+    }
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -41,9 +49,13 @@ Route::prefix('admin/staff')->middleware(['auth', 'role:admin'])->group(function
     Route::get('/', [AdminStaffController::class, 'index'])->name('admin.staff.index');
     Route::get('/create', [AdminStaffController::class, 'create'])->name('admin.staff.create');
     Route::post('/store', [AdminStaffController::class, 'store'])->name('admin.staff.store');
+     Route::get('/export', [AdminStaffController::class, 'export'])->name('admin.staff.export');
+    Route::get('/{id}', [AdminStaffController::class, 'show'])->name('admin.staff.show');
     Route::get('/{id}/edit', [AdminStaffController::class, 'edit'])->name('admin.staff.edit');
     Route::put('/{id}', [AdminStaffController::class, 'update'])->name('admin.staff.update');
     Route::delete('/{id}', [AdminStaffController::class, 'destroy'])->name('admin.staff.destroy');
+    
+         
 });
 
 require __DIR__.'/auth.php';
