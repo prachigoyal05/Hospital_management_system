@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\StaffController as AdminStaffController;
+use App\Http\Controllers\Admin\SettingController;
 
 Route::get('/', function () {
     if (auth()->check()) {
@@ -56,6 +57,11 @@ Route::prefix('admin/staff')->middleware(['auth', 'role:admin'])->group(function
     Route::delete('/{id}', [AdminStaffController::class, 'destroy'])->name('admin.staff.destroy');
     
          
+});
+
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::post('/settings/update', [SettingController::class, 'update'])->name('settings.update');
 });
 
 require __DIR__.'/auth.php';
