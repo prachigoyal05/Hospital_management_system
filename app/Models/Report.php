@@ -17,7 +17,7 @@ class Report extends Model
         'notes'
     ];
 
-// Add this accessor to properly handle null results
+//this accessor to properly handle null results
 public function getFormattedResultAttribute()
 {
     if (empty($this->result)) {

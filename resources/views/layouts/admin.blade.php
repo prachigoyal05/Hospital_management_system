@@ -50,78 +50,80 @@
 
     <div class="flex min-h-screen">
         <!-- Sidebar -->
-        <aside class="w-64 min-h-screen bg-[#003d3d] shadow-lg border-r border-[#006666] flex flex-col">
-            <div class="p-6 text-xl font-bold text-white border-b border-[#006666] flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-[#30e87a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-                <span>Hospital Admin</span>
+        <aside class="w-64 min-h-screen bg-[#001f8f] shadow-lg border-r border-[#006666] flex flex-col">
+    <div class="p-6 text-xl font-bold text-white border-b border-[#006666] flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-[#30e87a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+        <span class="text-white">Hospital Admin</span>
+    </div>
+    <nav class="flex-1 p-4 overflow-y-auto">
+        <ul class="space-y-1 text-white">
+            <li>
+                <a href="{{ route('admin.dashboard') }}" class="sidebar-link flex items-center py-3 px-4 rounded-lg text-white hover:text-white hover:bg-[#005555]">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-[#30e87a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.patients.index') }}" class="sidebar-link flex items-center py-3 px-4 rounded-lg text-white hover:text-white hover:bg-[#005555]">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-[#30e87a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    Patients
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.lab-tests.index') }}" class="sidebar-link flex items-center py-3 px-4 rounded-lg text-white hover:text-white hover:bg-[#005555]">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-[#30e87a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                    </svg>
+                    Lab Tests
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.reports.index') }}" class="sidebar-link flex items-center py-3 px-4 rounded-lg text-white hover:text-white hover:bg-[#005555]">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-[#30e87a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Reports
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.staff.index') }}" class="sidebar-link flex items-center py-3 px-4 rounded-lg text-white hover:text-white hover:bg-[#005555]">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-[#30e87a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Staff
+                </a>
+            </li>
+            <li>
+                <a href="#" class="sidebar-link flex items-center py-3 px-4 rounded-lg text-white hover:text-white hover:bg-[#005555]">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-[#30e87a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg> 
+                    Settings
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="p-4 border-t border-[#006666]">
+        <div class="flex items-center">
+            <div class="relative">
+                <img class="h-10 w-10 rounded-full object-cover border-2 border-[#30e87a]" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Admin profile">
+                <span class="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-500 border-2 border-white"></span>
             </div>
-            <nav class="flex-1 p-4 overflow-y-auto">
-                <ul class="space-y-1">
-                    <li>
-                        <a href="{{ route('admin.dashboard') }}" class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-300 hover:text-white hover:bg-[#005555]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-[#30e87a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                            </svg>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.patients.index') }}" class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-300 hover:text-white hover:bg-[#005555]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-[#30e87a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                            Patients
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.lab-tests.index') }}" class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-300 hover:text-white hover:bg-[#005555]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-[#30e87a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                            </svg>
-                            Lab Tests
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.reports.index') }}" class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-300 hover:text-white hover:bg-[#005555]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-[#30e87a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            Reports
-                        </a>
-                    </li>
-                    <li>
-                    <a href="{{ route('admin.staff.index') }}" class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-300 hover:text-white hover:bg-[#005555]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-[#30e87a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            Staff
-                        </a>
-                    <li>
-                        <a href="#" class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-300 hover:text-white hover:bg-[#005555]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-[#30e87a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg> 
-                            Settings
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="p-4 border-t border-[#006666]">
-                <div class="flex items-center">
-                    <div class="relative">
-                        <img class="h-10 w-10 rounded-full object-cover border-2 border-[#30e87a]" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Admin profile">
-                        <span class="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-500 border-2 border-white"></span>
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm font-medium text-white">Admin User</p>
-                        <p class="text-xs font-medium text-gray-300">Super Admin</p>
-                    </div>
-                </div>
+            <div class="ml-3">
+                <p class="text-sm font-medium text-white">Admin User</p>
+                <p class="text-xs font-medium text-gray-300">Super Admin</p>
             </div>
-        </aside>
+        </div>
+    </div>
+</aside>
+
 
 
         <!-- Main Content -->

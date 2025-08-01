@@ -40,10 +40,11 @@ Route::middleware(['auth', 'role:staff'])->group(function () {
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('patients', \App\Http\Controllers\Admin\PatientController::class);
     Route::resource('lab-tests', \App\Http\Controllers\Admin\LabTestController::class);
     Route::resource('reports', \App\Http\Controllers\Admin\ReportController::class);
-});
+});     
 
 Route::prefix('admin/staff')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/', [AdminStaffController::class, 'index'])->name('admin.staff.index');
