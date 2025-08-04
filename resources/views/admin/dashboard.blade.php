@@ -161,32 +161,39 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        <!-- Patient Row -->
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
-                                        <i class="fas fa-user text-blue-600"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">Michael Brown</div>
-                                        <div class="text-sm text-gray-500">ID: #P-9876</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">Today, 10:30 AM</div>
-                                <div class="text-sm text-gray-500">Dr. Smith</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Completed</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <a href="#" class="text-blue-600 hover:text-blue-900">View</a>
-                            </td>
-                        </tr>
-                        <!-- More patient rows... -->
-                    </tbody>
+    @forelse ($recentPatients as $patient)
+        <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-user text-blue-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">{{ $patient->name }}</div>
+                        <div class="text-sm text-gray-500">ID: #P-{{ $patient->id }}</div>
+                    </div>
+                </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">{{ $patient->created_at->format('M d, Y h:i A') }}</div>
+                <div class="text-sm text-gray-500">{{ $patient->assigned_doctor ?? '—' }}</div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">
+                    {{ $patient->status ?? 'New' }}
+                </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <a href="{{ route('admin.patients.show', $patient->id) }}" class="text-blue-600 hover:text-blue-900">View</a>
+            </td>
+        </tr>
+    @empty
+        <tr>
+            <td colspan="4" class="px-6 py-4 text-center text-sm text-gray-500">No recent patients found.</td>
+        </tr>
+    @endforelse
+</tbody>
+
                 </table>
             </div>
         </div>

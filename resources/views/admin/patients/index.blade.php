@@ -37,7 +37,8 @@
                     <td class="p-2">{{ $patient->dob}}</td>
                     <td class="p-2">{{ $patient->address}}</td>
                     <td class="p-2">
-                        <a href="{{ route('admin.patients.edit', $patient) }}" class="text-blue-500">Edit</a> |
+                    <a href="{{ route('admin.patients.edit', $patient->id) }}" class="text-blue-600 hover:underline">Edit</a>
+
                         <form action="{{ route('admin.patients.destroy', $patient) }}" method="POST" class="inline">
                             @csrf @method('DELETE')
                             <button type="submit" class="text-red-500" onclick="return confirm('Delete this patient?')">Delete</button>
@@ -48,7 +49,7 @@
                 <tr><td colspan="6"class="p-4 text-center">No patients found.</td></tr>
             @endforelse
         </tbody>
-    </table>
+    </table> 
 
 
     

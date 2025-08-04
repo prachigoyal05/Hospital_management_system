@@ -50,25 +50,26 @@ class PatientController extends Controller
     }
 
     public function edit(Patient $patient)
-    {
-        return view('admin.patients.edit', compact('patient'));
-    }
+{
+    return view('admin.patients.edit', compact('patient'));
+}
 
-    public function update(Request $request, Patient $patient)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'nullable|email',
-            'phone' => 'nullable|string|max:20',
-            'dob' => 'nullable|date',
-            //  'gender' => 'nullable|string',
-            'address' => 'nullable|string',
-        ]);
 
-        $patient->update($request->all());
+public function update(Request $request, Patient $patient)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email',
+        'phone' => 'nullable|string',
+        'dob' => 'nullable|date',
+        'address' => 'nullable|string',
+    ]);
 
-        return redirect()->route('admin.patients.index')->with('success', 'Patient updated successfully.');
-    }
+    $patient->update($validated);
+
+    return redirect()->route('admin.dashboard')->with('success', 'Patient added successfully!');
+}
+
 
     public function destroy(Patient $patient)
     {

@@ -15,7 +15,7 @@
                 </svg>
                 Add New Staff
             </a> -->
-            <a href="{{ route('admin.staff.create') }}" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-black uppercase tracking-widest hover:bg-red-700 active:bg-green-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">
+            <a href="{{ route('admin.staff.create') }}" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-green-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">
             <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
             </svg>
@@ -37,7 +37,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <!-- Search Input -->
                     <div>
-                        <label for="search" class="block text-sm font-medium text-blue-600 mb-1">Search</label>
+                        <label for="search" class="block text-sm font-medium text-black-600 mb-1">Search</label>
                         <div class="relative rounded-md shadow-sm">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <svg class="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -50,7 +50,7 @@
 
                     <!-- Role Filter -->
                     <div>
-                        <label for="role" class="block text-sm font-medium text-blue-600 mb-1">Role</label>
+                        <label for="role" class="block text-sm font-medium text-black-600 mb-1">Role</label>
                         <select name="role" id="role" class="block w-full pl-3 pr-10 py-2 text-base border border-blue-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
                             <option value="">All Roles</option>
         <option value="staff"  {{ $member->role ?? 'Staff' }}>Staff</option>
@@ -60,7 +60,7 @@
 
                     <!-- Status Filter -->
                     <div>
-                        <label for="status" class="block text-sm font-medium text-blue-600 mb-1">Status</label>
+                        <label for="status" class="block text-sm font-medium text-black-600 mb-1">Status</label>
                         <select name="status" id="status" class="block w-full pl-3 pr-10 py-2 text-base border border-blue-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
                             <option value="">All Statuses</option>
                             <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Active</option>
@@ -70,7 +70,7 @@
 
                     <!-- Action Buttons -->
                     <div class="flex items-end space-x-2">
-                        <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                             Filter
                         </button>
                         <a href="{{ route('admin.staff.index') }}" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
@@ -94,7 +94,7 @@
             <table class="min-w-full divide-y divide-blue-200" id="staffTable">
                 <thead class="bg-blue-50">
                     <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider cursor-pointer" onclick="sortTable('name')">
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-green-600 uppercase tracking-wider cursor-pointer" onclick="sortTable('name')">
                             <div class="flex items-center">
                                 Name
                                 <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -102,11 +102,11 @@
                                 </svg>
                             </div>
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">Email</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">Role</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">Last Login</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-600 uppercase tracking-wider">Status</th>
-                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-blue-600 uppercase tracking-wider">Actions</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-green-600 uppercase tracking-wider">Email</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-green-600 uppercase tracking-wider">Role</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-green-600 uppercase tracking-wider">Last Login</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-green-600 uppercase tracking-wider">Status</th>
+                        <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-green-600 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-blue-200">

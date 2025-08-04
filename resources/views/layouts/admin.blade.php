@@ -46,7 +46,7 @@
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
-    <body style="background-color: #f0f4f8;">
+    <!-- <body style="background-color: #f0f4f8;"> -->
 
     <div class="flex min-h-screen">
         <!-- Sidebar -->
@@ -122,6 +122,7 @@
                 </div>
             </div>
         </aside>
+
 
 
         <!-- Main Content -->
