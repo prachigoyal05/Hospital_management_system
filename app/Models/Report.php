@@ -27,15 +27,16 @@ public function getFormattedResultAttribute()
     return nl2br(e($this->result));
 }
 
-    public function patient()
+public function patient()
 {
     return $this->belongsTo(Patient::class);
-}
 
+}
 public function labTest()
 {
     return $this->belongsTo(LabTest::class);
 }
+
 
 public function getStatusAttribute()
 {

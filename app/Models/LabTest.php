@@ -12,5 +12,9 @@ class LabTest extends Model
 {
     return $this->hasMany(Report::class);
 }
+public function patient()
+{
+    return $this->belongsTo(Patient::class);
+}
 
 }

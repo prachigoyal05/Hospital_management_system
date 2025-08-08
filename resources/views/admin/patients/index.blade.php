@@ -20,6 +20,7 @@
             <th class="p-2 text-left w-1/6">Phone</th>
             <th class="p-2 text-left w-1/6">Date of birth</th>
             <th class="p-2 text-left w-1/6">Address</th>
+            <th class="p-2 text-left w-1/6">Status</th>
             <th class="p-2 text-left w-1/6">Actions</th>
         </tr>
     </thead>
@@ -37,11 +38,23 @@
                     <td class="p-2">{{ $patient->dob}}</td>
                     <td class="p-2">{{ $patient->address}}</td>
                     <td class="p-2">
+                @if($patient->status === 'inactive')
+                    <span class="text-red-500 font-semibold">Inactive</span>
+                @else
+                    <span class="text-green-600 font-semibold">Active</span>
+                @endif
+            </td>
+                    <td class="p-2">
                     <a href="{{ route('admin.patients.edit', $patient->id) }}" class="text-blue-600 hover:underline">Edit</a>
 
-                        <form action="{{ route('admin.patients.destroy', $patient) }}" method="POST" class="inline">
-                            @csrf @method('DELETE')
-                            <button type="submit" class="text-red-500" onclick="return confirm('Delete this patient?')">Delete</button>
+                        <!-- <form action="{{ route('admin.patients.deactivate', $patient) }}" method="POST" class="inline">
+                            @csrf @method('Deactivate') -->
+                            <form action="{{ route('admin.patients.deactivate', $patient->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to deactivate this patient?');">
+    @csrf
+    @method('PATCH')
+    <button type="submit" class="text-black-500">Deactivate</button>
+</form>
+
                         </form>
                     </td>
                 </tr>

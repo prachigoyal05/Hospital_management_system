@@ -1,62 +1,79 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\StaffController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Staff\DashboardController as StaffDashboardController;
 use App\Http\Controllers\Admin\StaffController as AdminStaffController;
+use App\Http\Controllers\Staff\SampleController as StaffSampleController;
+use App\Http\Controllers\Staff\TestController;
+use App\Http\Controllers\Staff\ReportController;
+use App\Http\Controllers\Admin\PatientController;
+use App\Http\Controllers\Admin\LabTestController;
+use App\Http\Controllers\Admin\ReportController as AdminReportController;
 
+// Redirect to correct dashboard based on role
 Route::get('/', function () {
     if (auth()->check()) {
-        $role = auth()->user()->role;
-        if ($role === 'admin') {
-            return redirect()->route('admin.dashboard');
-        } elseif ($role === 'staff') {
-            return redirect()->route('staff.dashboard');
-        }
+        return match (auth()->user()->role) {
+            'admin' => redirect()->route('admin.dashboard'),
+            'staff' => redirect()->route('staff.dashboard'),
+            default => view('welcome'),
+        };
     }
     return view('welcome');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
+// Profile Routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-});
-
-Route::middleware(['auth', 'role:staff'])->group(function () {
-    Route::get('/staff/dashboard', [StaffController::class, 'index'])->name('staff.dashboard');
-});
-
+// 🔐 Logout route (only one needed globally)
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('patients', \App\Http\Controllers\Admin\PatientController::class);
-    Route::resource('lab-tests', \App\Http\Controllers\Admin\LabTestController::class);
-    Route::resource('reports', \App\Http\Controllers\Admin\ReportController::class);
-});     
 
-Route::prefix('admin/staff')->middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/', [AdminStaffController::class, 'index'])->name('admin.staff.index');
-    Route::get('/create', [AdminStaffController::class, 'create'])->name('admin.staff.create');
-    Route::post('/store', [AdminStaffController::class, 'store'])->name('admin.staff.store');
-     Route::get('/export', [AdminStaffController::class, 'export'])->name('admin.staff.export');
-    Route::get('/{id}', [AdminStaffController::class, 'show'])->name('admin.staff.show');
-    Route::get('/{id}/edit', [AdminStaffController::class, 'edit'])->name('admin.staff.edit');
-    Route::put('/{id}', [AdminStaffController::class, 'update'])->name('admin.staff.update');
-    Route::delete('/{id}', [AdminStaffController::class, 'destroy'])->name('admin.staff.destroy');
-    
-         
+// ==================== ADMIN ROUTES ====================
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+    Route::resource('patients', PatientController::class);
+    Route::patch('patients/{id}/deactivate', [PatientController::class, 'deactivate'])->name('patients.deactivate');
+
+    Route::resource('lab-tests', LabTestController::class);
+    Route::resource('reports', AdminReportController::class);
+
+    // Staff management (admin/staff/...)
+    Route::prefix('staff')->name('staff.')->group(function () {
+        Route::get('/', [AdminStaffController::class, 'index'])->name('index');
+        Route::get('/create', [AdminStaffController::class, 'create'])->name('create');
+        Route::post('/store', [AdminStaffController::class, 'store'])->name('store');
+        Route::get('/export', [AdminStaffController::class, 'export'])->name('export');
+        Route::get('/{id}', [AdminStaffController::class, 'show'])->name('show');
+        Route::get('/{id}/edit', [AdminStaffController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [AdminStaffController::class, 'update'])->name('update');
+        Route::delete('/{id}', [AdminStaffController::class, 'destroy'])->name('destroy');
+    });
 });
+
+
+// ==================== STAFF ROUTES ====================
+Route::middleware(['auth', 'role:staff'])->prefix('staff')->name('staff.')->group(function () {
+    Route::get('/dashboard', [StaffDashboardController::class, 'index'])->name('dashboard');
+
+    Route::resource('samples', \App\Http\Controllers\Staff\SampleController::class);
+    // use Illuminate\Support\Facades\Route;
+
+
+
+    Route::resource('tests', TestController::class);
+    Route::resource('reports', ReportController::class);
+});
+Route::get('/dashboard', function () {
+    return view('dashboard');  // Create 'resources/views/dashboard.blade.php' if not exists
+})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

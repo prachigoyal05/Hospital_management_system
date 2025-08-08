@@ -11,7 +11,7 @@ class PatientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() 
     {
         $patients = Patient::paginate(10);
         return view('admin.patients.index', compact('patients'));
@@ -29,7 +29,7 @@ class PatientController extends Controller
      * Store a newly created resource in storage.
      */
        public function store(Request $request)
-    {
+    { 
          $validated = $request->validate([
         'name' => 'required|string|max:255',
         'email' => 'required|email|unique:patients,email',
@@ -76,4 +76,13 @@ public function update(Request $request, Patient $patient)
         $patient->delete();
         return redirect()->route('admin.patients.index')->with('success', 'Patient deleted successfully.');
     }
+    public function deactivate($id)
+{
+    $patient = Patient::findOrFail($id);
+    $patient->status = 'inactive'; // Make sure this column exists!
+    $patient->save();
+
+    return redirect()->route('admin.patients.index')->with('success', 'Patient deactivated.');
+}
+
 }
