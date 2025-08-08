@@ -22,8 +22,12 @@ public function create()
 public function store(Request $request)
 {
     $request->validate([
-        'name' => 'required',
+        'name' => 'required|string|max:255',
+        'category' => 'nullable|string|max:255',
         'price' => 'nullable|numeric',
+        'turnaround_time' => 'nullable|string',
+        'description' => 'nullable|string',
+        'test_requirements' => 'nullable|string'
     ]);
 
     LabTest::create($request->all());

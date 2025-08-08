@@ -67,8 +67,8 @@
                 <!-- Test Requirements -->
                 <div class="space-y-2 md:col-span-2">
                     <label class="block text-sm font-medium text-black-600">Test Requirements</label>
-                    <textarea name="requirements" rows="2" class="block w-full rounded-md border-blue-200 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="e.g. Fasting required, Bring previous reports"></textarea>
-                </div>
+                     <textarea name="test_requirements" rows="3" class="w-full border px-3 py-2 rounded">{{ old('test_requirements', $test->test_requirements ?? '') }}</textarea>
+                       </div>
             </div>
 
             <!-- Form Footer -->

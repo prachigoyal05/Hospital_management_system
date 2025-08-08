@@ -1,9 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="max-w-xl mx-auto mt-8 bg-white p-6 rounded-lg shadow-md">
-
-    <h2 class="text-2xl font-semibold mb-6 text-center">Add New Patient</h2>
+<div class="max-w-xl mx-auto bg-white p-6 rounded shadow">
+    <h2 class="text-2xl font-bold mb-4">Add New Patient</h2>
 
     @if ($errors->any())
         <div class="bg-red-100 text-red-700 p-4 rounded mb-4">
@@ -16,38 +15,73 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.patients.store') }}" method="POST" class="space-y-4">
+    <form action="{{ route('admin.patients.store') }}" method="POST">
         @csrf
 
-        <div>
-            <label class="block mb-1 font-medium">Full Name</label>
-            <input type="text" name="name" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">Name</label>
+            <input type="text" name="name" value="{{ old('name') }}" class="w-full border px-3 py-2 rounded" required>
         </div>
 
-        <div>
-            <label class="block mb-1 font-medium">Email (optional)</label>
-            <input type="email" name="email" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">Email</label>
+            <input type="email" name="email" value="{{ old('email') }}" class="w-full border px-3 py-2 rounded">
         </div>
 
-        <div>
-            <label class="block mb-1 font-medium">Phone Number</label>
-            <input type="text" name="phone" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">Phone</label>
+            <input type="text" name="phone" value="{{ old('phone') }}" class="w-full border px-3 py-2 rounded">
         </div>
 
-        <div>
-            <label class="block mb-1 font-medium">Date of Birth</label>
-            <input type="date" name="dob" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">Date of Birth</label>
+            <input type="date" name="dob" id="dob" value="{{ old('dob') }}" 
+                   max="{{ now()->format('Y-m-d') }}"
+                   class="w-full border px-3 py-2 rounded"
+                   onchange="validateDOB(this)">
+            <p id="dob-error" class="mt-1 text-sm text-red-600 hidden">Date of birth cannot be in the future</p>
         </div>
 
-        <div>
-            <label class="block mb-1 font-medium">Address</label>
-            <textarea name="address" rows="3" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+        <div class="mb-4">
+            <label class="block font-semibold mb-1">Address</label>
+            <textarea name="address" rows="3" class="w-full border px-3 py-2 rounded">{{ old('address') }}</textarea>
         </div>
 
-        <div class="flex items-center justify-between mt-6">
-            <button type="submit" class="bg-green-600 hover:bg--700 text-white px-4 py-2 rounded">Add Patient</button>
-            <a href="{{ route('admin.patients.index') }}" class="bg-white-600 hover:bg-green-700 text-black px-4 py-2 rounded">Cancel</a>
+        <!-- Status Toggle (default to active for new patients) -->
+        <div class="mb-6">
+            <label class="block font-semibold mb-2">Account Status</label>
+            <div class="flex items-center">
+                <label class="inline-flex items-center mr-4">
+                    <input type="radio" name="is_active" value="1" checked class="form-radio text-blue-600">
+                    <span class="ml-2">Active</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="radio" name="is_active" value="0" class="form-radio text-red-600">
+                    <span class="ml-2">Inactive</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="flex justify-between">
+            <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Add Patient</button>
+            <a href="{{ route('admin.patients.index') }}" class="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100">Cancel</a>
         </div>
     </form>
 </div>
+
+<script>
+function validateDOB(input) {
+    const errorElement = document.getElementById('dob-error');
+    const selectedDate = new Date(input.value);
+    const today = new Date();
+    
+    if (selectedDate > today) {
+        errorElement.classList.remove('hidden');
+        input.value = '';
+        input.focus();
+    } else {
+        errorElement.classList.add('hidden');
+    }
+}
+</script>
 @endsection

@@ -19,7 +19,7 @@ class ReportController extends Controller
 
 public function create()
 {
-    $patients = Patient::all();
+    $patients = Patient::where('is_active', true)->orderBy('name')->get();
     $tests = LabTest::all();
     return view('admin.reports.create', compact('patients', 'tests'));
 }
@@ -27,7 +27,16 @@ public function create()
 public function store(Request $request)
 {
     $validated = $request->validate([
-        'patient_id' => 'required|exists:patients,id',
+        'patient_id' => [
+            'required',
+            'exists:patients,id',
+            function ($attribute, $value, $fail) {
+                $patient = Patient::find($value);
+                if (!$patient || !$patient->is_active) {
+                    $fail('The selected patient is inactive or does not exist.');
+                }
+            }
+        ],
         'lab_test_id' => 'required|exists:lab_tests,id',
         'report_date' => 'required|date',
         'result' => 'nullable|string',

@@ -33,8 +33,26 @@
                 <textarea name="address" class="w-full border px-3 py-2 rounded">{{ old('address', $patient->address) }}</textarea>
             </div>
 
-            <div>
-                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Update</button>
+            <!-- Add Status Toggle -->
+            <div class="mb-6">
+                <label class="block font-semibold mb-2">Account Status</label>
+                <div class="flex items-center">
+                    <label class="inline-flex items-center mr-4">
+                        <input type="radio" name="is_active" value="1" 
+                            {{ $patient->is_active ? 'checked' : '' }} class="form-radio text-blue-600">
+                        <span class="ml-2">Active</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="is_active" value="0" 
+                            {{ !$patient->is_active ? 'checked' : '' }} class="form-radio text-red-600">
+                        <span class="ml-2">Inactive</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex justify-between">
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Update Patient</button>
+                <a href="{{ route('admin.patients.index') }}" class="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100">Cancel</a>
             </div>
         </form>
     </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\StaffController as AdminStaffController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\PatientController;
 
 Route::get('/', function () {
     if (auth()->check()) {
@@ -65,4 +66,30 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::post('/settings/update', [SettingController::class, 'update'])->name('settings.update');
 });
 
+Route::patch('/patients/{patient}/toggle-status', [PatientController::class, 'toggleStatus'])
+    ->name('admin.patients.toggle-status');
+
+Route::post('/patients/import', [PatientController::class, 'import'])
+    ->name('admin.patients.import');
+
+    Route::get('/test-import', function() {
+    $path = storage_path('app/sample_patients_import.csv');
+    Excel::import(new \App\Imports\PatientsImport, $path);
+    
+    return [
+        'imported' => \App\Models\Patient::count(),
+        'latest' => \App\Models\Patient::latest()->first()
+    ];
+});
+
+// In routes/web.php
+Route::prefix('admin')->group(function() {
+    // ... other routes
+    
+    Route::get('/patients/import', [PatientController::class, 'importView'])
+        ->name('admin.patients.import-view');
+        
+    Route::post('/patients/import', [PatientController::class, 'import'])
+        ->name('admin.patients.import');
+});
 require __DIR__.'/auth.php';

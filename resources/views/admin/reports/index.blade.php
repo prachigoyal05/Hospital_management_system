@@ -41,8 +41,13 @@
             
             <!-- Patient Info -->
             <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm font-medium text-blue-900">{{ $report->patient->name }}</div>
-                <div class="text-sm text-blue-500">{{ $report->patient->id }}</div>
+        <div class="text-sm font-medium text-blue-900">
+        {{ $report->patient->name }}
+        @if(!$report->patient->is_active)
+            <span class="ml-2 px-2 py-0.5 text-xs font-semibold rounded-full bg-red-100 text-red-800">Inactive</span>
+        @endif
+        </div>
+            <div class="text-sm text-blue-500">{{ $report->patient->id }}</div>
             </td>
             
             <!-- Test Info -->

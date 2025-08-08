@@ -58,6 +58,7 @@
     </div>
 
     <!-- Tests Table -->
+     <div id="tests-table-container">
     <div class="bg-white rounded-lg shadow-sm border border-blue-100 overflow-hidden">
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-blue-200">
@@ -117,6 +118,7 @@
                 </tbody>
             </table>
         </div>
+        </div>
 
         <!-- Pagination -->
         <!-- Pagination -->
@@ -166,4 +168,37 @@
 @endif
     </div>
 </div>
+<!-- script section -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const filterButton = document.querySelector('button.bg-green-600');
+    const searchInput = document.getElementById('search');
+    const categorySelect = document.getElementById('category');
+    const tableRows = document.querySelectorAll('tbody tr');
+
+    function filterTests() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const category = categorySelect.value;
+
+        tableRows.forEach(row => {
+            const name = row.querySelector('td:first-child').textContent.toLowerCase();
+            const rowCategory = row.querySelector('td:nth-child(2)').textContent;
+            
+            const matchesSearch = name.includes(searchTerm);
+            const matchesCategory = category === "" || rowCategory === category;
+
+            if (matchesSearch && matchesCategory) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    // Initial event listeners
+    filterButton.addEventListener('click', filterTests);
+    searchInput.addEventListener('input', filterTests);
+    categorySelect.addEventListener('change', filterTests);
+});
+</script>
 @endsection

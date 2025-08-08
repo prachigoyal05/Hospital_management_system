@@ -165,7 +165,7 @@
         <tr class="hover:bg-gray-50">
             <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">
-                    <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
+                    <div class="  bg-blue-100 flex items-center justify-center">
                         <i class="fas fa-user text-blue-600"></i>
                     </div>
                     <div class="ml-4">

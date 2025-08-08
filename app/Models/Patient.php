@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
 {
-   protected $fillable = ['name', 'email', 'phone', 'dob', 'address'];
+   protected $fillable = ['name', 'email', 'phone', 'dob', 'address' , 'is_active' ];
 
    public function reports()
 {
@@ -14,4 +14,8 @@ class Patient extends Model
 }
 
 
+public function scopeActive($query)
+{
+    return $query->where('is_active', true);
+}
 }

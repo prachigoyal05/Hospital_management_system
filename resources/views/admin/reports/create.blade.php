@@ -44,11 +44,10 @@
                     <label class="block text-sm font-medium text-greeb-600">Patient *</label>
                     <select name="patient_id" class="block w-full rounded-md border-green-200 shadow-sm focus:border-green-500 focus:ring-green-500" required>
                         <option value="">Select Patient</option>
-                        @foreach($patients as $patient)
-                            <option value="{{ $patient->id }}" {{ old('patient_id') == $patient->id ? 'selected' : '' }}>
-                                {{ $patient->name }} ({{ $patient->id }})
-                            </option>
-                        @endforeach
+                         @foreach($patients as $patient)
+        <option value="{{ $patient->id }}">{{ $patient->name }} ({{ $patient->id }})</option>
+    @endforeach
+                    
                     </select>
                 </div>
 

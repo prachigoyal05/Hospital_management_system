@@ -2,25 +2,26 @@
 
 @section('content')
 <div class="p-4">
-    <h2 class="text-xl font-bold mb-4">Settings</h2>
+    <h2 class="text-2xl text-red-700 font-bold mb-4">Settings</h2>
 
     <ul class="flex space-x-4 border-b mb-4">
-        <li><a href="#general" class="tab-link font-semibold">General</a></li>
-        <li><a href="#lab" class="tab-link font-semibold">Lab Preferences</a></li>
-        <li><a href="#users" class="tab-link font-semibold">User Management</a></li>
-        <li><a href="#security" class="tab-link font-semibold">Security</a></li>
-    </ul>
+    <li><a href="#general" class="tab-link text-green-600 font-bold border-b-2 border-green-600 pb-2">General</a></li>
+    <li><a href="#lab" class="tab-link font-bold text-green-600 hover:text-green-600 pb-2">Lab Preferences</a></li>
+    <li><a href="#users" class="tab-link font-bold text-green-600 hover:text-green-600 pb-2">User Management</a></li>
+    <li><a href="#security" class="tab-link font-bold text-green-600 hover:text-green-600 pb-2">Security</a></li>
+</ul>
 
     <div id="general" class="tab-content p-6 bg-white rounded-lg shadow-sm border border-gray-200">
     <form method="POST" action="{{ route('admin.settings.update') }}" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="tab" value="general">
         
-        <h3 class="text-lg font-semibold text-gray-800 mb-6 pb-2 border-b border-gray-200">General Settings</h3>
+        <h3 class="text-lg font-semibold text-green-600 mb-6 pb-2 border-b border-gray-200">General Settings</h3>   
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <!-- Site Name -->
             <div>
+                
                 <label class="block text-sm font-medium text-gray-700 mb-1">Site Name *</label>
                 <input type="text" name="site_name" value="{{ $settings['site_name'] ?? '' }}"
                        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
@@ -37,9 +38,9 @@
                     <img src="{{ Storage::url($settings['site_logo']) }}" alt="Site Logo" class="h-12 w-auto border rounded p-1 bg-gray-50">
                     @endif
                     <div class="flex-1">
-                        <input type="file" name="site_logo" accept="image/*"
+                        <input type="file" name="site_logo" accept="image/*" 
                                class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
-                        <p class="mt-1 text-xs text-gray-500">Recommended size: 200x50px (PNG, JPG)</p>
+                        <p class="mt-1 text-xs text-red-500">Recommended size: 200x50px (PNG, JPG)</p>
                     </div>
                 </div>
             </div>
@@ -67,7 +68,7 @@
         
         <!-- Save Button -->
         <div class="flex justify-end pt-4 border-t border-gray-200">
-            <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">
+            <button type="submit" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">
                 <svg class="-ml-1 mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
@@ -83,7 +84,7 @@
         @csrf
         <input type="hidden" name="tab" value="lab">
         
-        <h3 class="text-lg font-semibold text-gray-800 mb-6 pb-2 border-b border-gray-200">Lab Preferences</h3>
+        <h3 class="text-lg font-semibold text-red-500 mb-6 pb-2 border-b border-gray-200">Lab Preferences</h3>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <!-- Operating Hours -->
@@ -154,7 +155,7 @@
         
         <!-- Save Button -->
         <div class="flex justify-end pt-4 border-t border-gray-200">
-            <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">
+            <button type="submit" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">
                 <svg class="-ml-1 mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
@@ -170,7 +171,7 @@
         @csrf
         <input type="hidden" name="tab" value="users">
         
-        <h3 class="text-lg font-semibold text-gray-800 mb-6 pb-2 border-b border-gray-200">User Management Settings</h3>
+        <h3 class="text-lg font-semibold text-red-500 mb-6 pb-2 border-b border-gray-200">User Management Settings</h3>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <!-- Default User Role -->
@@ -250,7 +251,7 @@
         
         <!-- Save Button -->
         <div class="flex justify-end pt-4 border-t border-gray-200">
-            <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">
+            <button type="submit" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">
                 <svg class="-ml-1 mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
@@ -266,12 +267,12 @@
         @csrf
         <input type="hidden" name="tab" value="security">
         
-        <h3 class="text-lg font-semibold text-gray-800 mb-6 pb-2 border-b border-gray-200">Security Settings</h3>
+        <h3 class="text-lg font-semibold text-red-500 mb-6 pb-2 border-b border-gray-200">Security Settings</h3>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <!-- Password Policy -->
             <div class="md:col-span-2">
-                <h4 class="text-md font-medium text-gray-700 mb-3">Password Policy</h4>
+                <h4 class="text-md font-medium text-black-500 mb-3">Password Policy</h4>
                 <div class="space-y-4 pl-4 border-l-2 border-blue-100">
                     <!-- Password Expiry -->
                     <div>
@@ -385,7 +386,7 @@
         
         <!-- Save Button -->
         <div class="flex justify-end pt-4 border-t border-gray-200">
-            <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">
+            <button type="submit" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">
                 <svg class="-ml-1 mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
@@ -399,6 +400,13 @@
 </div>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach((tab, index) => {
+        if (index !== 0) tab.classList.add('hidden');
+    });
+});
+
     document.querySelectorAll('.tab-link').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();

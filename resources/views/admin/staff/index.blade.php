@@ -114,7 +114,7 @@
                     <tr class="hover:bg-blue-50">
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
-                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-black-500 flex items-center justify-center">
                                     @if($member->profile_photo)
                                         <img class="h-10 w-10 rounded-full" src="{{ asset('storage/'.$member->profile_photo) }}" alt="">
                                     @else
@@ -124,12 +124,12 @@
                                     @endif
                                 </div>
                                 <div class="ml-4">
-                                    <div class="text-sm font-medium text-blue-900">{{ $member->name }}</div>
-                                    <div class="text-sm text-blue-500">ID: {{ $member->id }}</div>
+                                    <div class="text-sm font-medium text-black-900">{{ $member->name }}</div>
+                                    <div class="text-sm text-red-500">ID: {{ $member->id }}</div>
                                 </div>
                             </div>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-black-600">
                             {{ $member->email }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
@@ -145,11 +145,11 @@
                                 {{ ucfirst($member->role) }}
                             </span>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">
                             {{ $member->last_login_at ? $member->last_login_at->diffForHumans() : 'Never' }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2 py-1 text-xs rounded-full {{ $member->is_active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
+                            <span class="px-2 py-1 text-xs rounded-full {{ $member->is_active ? 'bg-green-200 text-green-800' : 'bg-red-100 text-red-800' }}">
                                 {{ $member->is_active ? 'Active' : 'Inactive' }}
                             </span>
                         </td>

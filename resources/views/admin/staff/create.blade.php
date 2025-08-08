@@ -52,21 +52,7 @@
                            class="block w-full rounded-md border-blue-200 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
                 </div>
 
-                <!-- Password Field -->
-                <div class="space-y-2">
-                    <label for="password" class="block text-sm font-medium text-black-600">Password *</label>
-                    <input type="password" name="password" id="password" 
-                           class="block w-full rounded-md border-blue-200 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
-                    <p class="mt-1 text-xs text-green-500">Minimum 8 characters</p>
-                </div>
-
-                <!-- Confirm Password Field -->
-                <div class="space-y-2">
-                    <label for="password_confirmation" class="block text-sm font-medium text-black-600">Confirm Password *</label>
-                    <input type="password" name="password_confirmation" id="password_confirmation" 
-                           class="block w-full rounded-md border-blue-200 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
-                </div>
-
+               
                 <!-- Role Selection -->
                 <div class="space-y-2">
     <label for="role" class="block text-sm font-medium text-black-600">Role *</label>

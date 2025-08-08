@@ -25,7 +25,7 @@
         
          <div class="mb-3">
             <label>Turnaround_time</label>
-            <input type="number" step="0.01" name="price" class="form-control" value="{{ $labTest->price }}">
+            <input type="number" step="0.01" name="turnaround_time" class="form-control" value="{{ $labTest->turnaround_time }}">
         </div>
 
         
@@ -36,7 +36,7 @@
 
         <div class="mb-3">
             <label>Test_requirements</label>
-            <input type="number" step="0.01" name="price" class="form-control" value="{{ $labTest->price }}">
+            <input type="text"  name="text" class="form-control" value="{{ $labTest->test_requirements }}">
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
         <a href="{{ route('admin.lab-tests.index') }}" class="btn btn-secondary">Back</a>

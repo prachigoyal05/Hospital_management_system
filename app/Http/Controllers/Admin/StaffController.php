@@ -7,6 +7,11 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+
 class StaffController extends Controller
 {
      public function index(Request $request)
@@ -48,21 +53,23 @@ class StaffController extends Controller
         $validated = $request->validate([
         'name' => 'required|string|max:255',
         'email' => 'required|email|unique:users',
-        'password' => 'required|min:8|confirmed',
+        // 'password' => 'required|min:8|confirmed',
         'role' => 'required|in:staff,doctor,nurse,admin',
         'department' => 'nullable|string|max:255'
     ]);
     
-    
+
     // Then use the validated data consistently
     $user = User::create([
         'name' => $validated['name'],
         'email' => $validated['email'],
-        'password' => bcrypt($validated['password']),
+         'password' => Hash::make(Str::random(16)),
         'role' => $validated['role'],
         'department' => $validated['department'] ?? null
     ]);
 
+        // Send password reset link
+        Password::sendResetLink(['email' => $user->email]);
 
         return redirect()->route('admin.staff.index')->with('success', 'Staff created successfully.');
     }
