@@ -11,7 +11,7 @@ class SampleController extends Controller
 {
     public function index()
     {
-        $samples = Sample::all();
+        $samples = Sample::latest()->get();
         return view('staff.samples.index', compact('samples'));// ✅ Must be a Blade file
     }
 

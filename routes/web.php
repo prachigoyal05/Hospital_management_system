@@ -65,15 +65,14 @@ Route::middleware(['auth', 'role:staff'])->prefix('staff')->name('staff.')->grou
     Route::get('/dashboard', [StaffDashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('samples', \App\Http\Controllers\Staff\SampleController::class);
-    // use Illuminate\Support\Facades\Route;
-
-
-
+    
     Route::resource('tests', TestController::class);
     Route::resource('reports', ReportController::class);
 });
 Route::get('/dashboard', function () {
     return view('dashboard');  // Create 'resources/views/dashboard.blade.php' if not exists
 })->middleware(['auth'])->name('dashboard');
+Route::get('/samples', [SampleController::class, 'index'])->name('samples.index');
+
 
 require __DIR__.'/auth.php';
