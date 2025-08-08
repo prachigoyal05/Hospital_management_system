@@ -35,9 +35,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 });
 
-Route::middleware(['auth', 'role:staff'])->group(function () {
-    Route::get('/staff/dashboard', [StaffController::class, 'index'])->name('staff.dashboard');
-});
+// Route::middleware(['auth', 'role:staff'])->group(function () {
+//     Route::get('/staff/dashboard', [StaffController::class, 'index'])->name('staff.dashboard');
+// });
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
@@ -92,4 +92,7 @@ Route::prefix('admin')->group(function() {
     Route::post('/patients/import', [PatientController::class, 'import'])
         ->name('admin.patients.import');
 });
+
+
+
 require __DIR__.'/auth.php';
