@@ -1,4 +1,4 @@
-{{<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -51,10 +51,11 @@
 
             <!-- Page Content -->
             <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                <div class="bg-white rounded-lg shadow-sm border border-light-blue p-6">
-                
-                </div>
-            </main>
+    <div class="bg-white rounded-lg shadow-sm border border-light-blue p-6">
+        @yield('content')
+    </div>
+</main>
+
         </div>
     </body>
 </html>}}

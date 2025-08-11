@@ -30,7 +30,9 @@
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">Status</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">Result</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">File</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">Report</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-black-600 uppercase tracking-wider">Actions</th>
+                     
                     </tr>
                 </thead>
               <tbody class="bg-white divide-y divide-blue-200">
@@ -100,10 +102,26 @@
                         </svg>
                         View
                     </a>
+        </div>
                 @else
                     <span class="text-gray-400">N/A</span>
                 @endif
             </td>
+              
+            <!-- Download Report Column -->
+<td class="px-6 py-4 whitespace-nowrap">
+    @if ($report->file_path)
+        <a href="{{ route('admin.reports.download', $report->id) }}" 
+           class="inline-flex items-center px-2 py-1 border border-green-300 rounded-md text-xs font-medium text-green-700 bg-white hover:bg-green-50">
+            <svg class="h-4 w-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+            Download
+        </a>
+    @else
+        <span class="text-gray-400">N/A</span>
+    @endif
+</td>
             
             <!-- Actions -->
             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">

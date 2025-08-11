@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Models\Patient;
 use App\Models\LabTest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class ReportController extends Controller
 {
@@ -71,4 +73,21 @@ public function destroy(Report $report)
         $report->delete();
         return redirect()->route('admin.reports.index')->with('success', 'Report created successfully');
     }
+
+public function download(Report $report)
+{
+     Log::info("Checking file at path: " . $report->file_path);
+    // Check if file exists
+    if (!Storage::exists($report->file_path)) {
+        abort(404);
+    }
+
+    // Get file name with proper extension
+    $fileName = pathinfo($report->file_path, PATHINFO_BASENAME);
+    $fileExtension = pathinfo($report->file_path, PATHINFO_EXTENSION);
+    $downloadName = "report-{$report->id}-{$report->patient->name}.{$fileExtension}";
+    
+    // Force download
+    return Storage::download($report->file_path, $downloadName);
+}
 }
